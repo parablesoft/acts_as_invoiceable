@@ -36,4 +36,9 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency "rspec", "~> 3.0"
   spec.add_development_dependency "sqlite3", '~> 1.3.9'
   spec.add_development_dependency "byebug", '~> 4.0.5'
+  spec.add_development_dependency "database_cleaner"
+  spec.add_development_dependency "factory_girl"
+  spec.add_development_dependency "ffaker"
+  spec.add_development_dependency "shoulda-matchers"
+
 end

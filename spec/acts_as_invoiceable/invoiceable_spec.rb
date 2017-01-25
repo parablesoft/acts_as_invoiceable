@@ -1,12 +1,44 @@
 require 'spec_helper'
-
-
-
-
 describe ActsAsInvoiceable::Invoiceable do
   describe "#pdf_bill_to" do
     subject{create(:invoice)}
     it{expect(subject.pdf_bill_to).to eq "#{subject.billing_name}\n#{subject.billing_address_1}\n#{subject.billing_city}, #{subject.billing_state}, #{subject.billing_zip}"}
+  end
+
+
+  context "associations" do
+
+    subject{build(:invoice)}
+    it{is_expected.to respond_to :invoice_line_items}
+
+    context "destroying invoice_line_items" do
+      subject! do
+	invoice = create(:invoice)
+	create_list(:invoice_line_item,5,invoice: invoice)
+	invoice
+      end
+      it{expect{subject.destroy}.to change{InvoiceLineItem.count}.by(-5)}
+    end
+  end
+
+
+
+  describe "#total" do
+
+    context "with invoice_line_items" do
+      subject do
+	invoice = create(:invoice)
+	invoice.invoice_line_items << build(:invoice_line_item, quantity: 5, rate: 1000)
+	invoice.invoice_line_items << build(:invoice_line_item, quantity: 1, rate: 200)
+	invoice
+      end
+
+      it {expect(subject.total).to eq 5200}
+    end
+    context "no invoice_line_items" do
+      subject{create(:invoice)}
+      it{expect(subject.total).to eq 0}
+    end
   end
 
 
@@ -70,14 +102,6 @@ describe ActsAsInvoiceable::Invoiceable do
 
     it{expect(invoice.to_qb).to eq request}
   end
-
-
-  context "properties" do
-    subject{build(:invoice)}
-    it{is_expected.to respond_to :invoice_line_items}
-
-  end
-
 
   describe "to_pdf" do
     subject{create(:invoice, :with_line_items)}

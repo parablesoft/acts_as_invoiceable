@@ -5,18 +5,11 @@ require 'ffaker'
 require "database_cleaner"
 require "factory_girl"
 require "payday"
-# require 'shoulda/matchers'
 
 Dir["spec/factories/**/*.rb"].each {|f| load f}
 
 load "spec/database.rb"
 
-# Shoulda::Matchers.configure do |config|
-#   config.integrate do |with|
-#     with.test_framework :rspec
-#     with.library :rails
-#   end
-# end
 
 RSpec.configure do |config|
   config.before(:suite) do

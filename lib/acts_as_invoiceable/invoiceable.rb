@@ -21,11 +21,11 @@ module ActsAsInvoiceable
       end
 
 
-      def pdf_bill_to
-	"#{billing_name}\n#{billing_address_1}\n#{billing_city}, #{billing_state}, #{billing_zip}"
-      end
     end
 
+    def pdf_bill_to
+      "#{billing_name}\n#{billing_address_1}\n#{billing_city}, #{billing_state}, #{billing_zip}"
+    end
 
     TERMS_DUE_ON_RECEIPT = "Due on receipt"
     def to_pdf

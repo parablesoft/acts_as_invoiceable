@@ -23,6 +23,9 @@ module ActsAsInvoiceable
 
     end
 
+    def invoice_template
+
+    end
     def pdf_bill_to
       "#{billing_name}\n#{billing_address_1}\n#{billing_city}, #{billing_state}, #{billing_zip}"
     end
@@ -41,6 +44,9 @@ module ActsAsInvoiceable
 	  "InvoiceAdd" => {
 	    "CustomerRef" => {
 	      "FullName" => "#{billing_name}"
+	    },
+	    "TemplateRef" =>{
+	      "FullName" => "#{invoice_template}",
 	    },
 	    "RefNumber" => "#{number}",
 	    "BillAddress" => {

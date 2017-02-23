@@ -62,6 +62,9 @@ describe ActsAsInvoiceable::Invoiceable do
 	    "CustomerRef" => {
 	      "FullName" => "#{invoice.billing_name}"
 	    },
+	    "TemplateRef" =>{
+	      "FullName" => ""
+	    },
 	    "RefNumber" => "#{invoice.number}",
 	    "BillAddress" => {
 	      "Addr1" => "#{invoice.billing_address_1}",

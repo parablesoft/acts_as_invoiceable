@@ -33,7 +33,7 @@ module ActsAsInvoiceable
     TERMS_DUE_ON_RECEIPT = "Due on receipt"
     def to_pdf
       payday = Payday::Invoice.new(invoice_number: number, bill_to: pdf_bill_to,invoice_date: Date.today, po_number: po_number, terms: TERMS_DUE_ON_RECEIPT )
-      invoice_line_items.each {|li| payday.line_items << Payday::LineItem.new(li.pdf_params)}
+      invoice_line_items.order(:id).each {|li| payday.line_items << Payday::LineItem.new(li.pdf_params)}
       payday
     end
 

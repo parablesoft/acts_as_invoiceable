@@ -62,7 +62,7 @@ module ActsAsInvoiceable
 	    },
 	    "DueDate" => "#{due_date}",
 	    "Other" => "#{id}",
-	    "InvoiceLineAdd" => invoice_line_items.map(&:to_qb)
+	    "InvoiceLineAdd" => invoice_line_items.order(:id).map(&:to_qb)
 	  }
 	}
       }

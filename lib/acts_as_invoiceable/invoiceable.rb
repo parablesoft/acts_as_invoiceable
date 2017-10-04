@@ -64,7 +64,7 @@ module ActsAsInvoiceable
 	      "State" => "#{billing_state}",
 	      "PostalCode" => "#{billing_zip}"
 	    },
-	    "PONumber" => "#{po_number}",
+	    # "PONumber" => "#{po_number}",
 	    "TermsRef" => {
 	      "FullName" => TERMS_DUE_ON_RECEIPT
 	    },

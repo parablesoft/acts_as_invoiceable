@@ -56,6 +56,7 @@ module ActsAsInvoiceable
 	    "TemplateRef" =>{
 	      "FullName" => "#{invoice_template}",
 	    },
+		"TxnDate" => Date.today,
 	    "RefNumber" => "#{number}",
 	    "BillAddress" => {
 	      "Addr1" => "#{billing_address_1}",
